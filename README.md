@@ -499,6 +499,17 @@ The following validators are built in:
 - `ExactArgs(int)` - the command will report an error if there are not exactly N positional args.
 - `RangeArgs(min, max)` - the command will report an error if the number of args is not between the minimum and maximum number of expected args.
 
+A built in validator can be used like this:
+
+```go
+
+Args: func(cmd *cobra.Command, args []string) error {
+  if err := cobra.RequiresMinArgs(1)(cmd, args); err != nil {
+    return err
+  }
+}
+```
+
 A custom validator can be provided like this:
 
 ```go
